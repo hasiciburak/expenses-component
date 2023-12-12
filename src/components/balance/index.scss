@@ -1,0 +1,22 @@
+@use "../../scss/variables";
+.balance-container {
+  background-color: variables.$red;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 27px;
+  border-radius: 20px;
+  width: inherit;
+  & small,
+  & p {
+    color: variables.$white;
+  }
+  & small {
+    font-size: variables.$mini-caption;
+  }
+  & p {
+    font-size: variables.$heading-l;
+    font-weight: bold;
+  }
+}
