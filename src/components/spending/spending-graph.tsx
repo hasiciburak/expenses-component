@@ -1,6 +1,7 @@
 import "./index.scss";
 import expenses from "../../data/data.json";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 type Props = {};
 type TooltipProps = {};
@@ -10,24 +11,48 @@ const GraphTooltip = (props: TooltipProps) => {};
 
 const SpendingGraphBar = (props: GraphBarProps) => {
   const [hoveredDay, setHoveredDay] = useState("");
-
+  const showCondition = hoveredDay === props.day;
   return (
     <div className="graphbar-container">
-      <span
-        className="pop"
-        style={{
-          color: hoveredDay === props.day ? "white" : "transparent",
-          padding: "5px",
-          background: hoveredDay === props.day ? "black" : "transparent",
-          marginBottom: "10px",
-          borderRadius: "5px",
-        }}
-      >
-        {props.amount}
-      </span>
+      {hoveredDay === props.day ? (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{
+            opacity: 1,
+            y: showCondition ? 0 : 10,
+          }}
+          transition={{ duration: 1, type: "spring", stiffness: 100 }}
+          className="pop"
+          style={{
+            color: showCondition ? "white" : "transparent",
+            padding: "5px",
+            background: showCondition ? "black" : "transparent",
+            marginBottom: "10px",
+            borderRadius: "5px",
+          }}
+        >
+          {props.amount}
+        </motion.div>
+      ) : (
+        <motion.span
+          className="pop"
+          style={{
+            color: "transparent",
+            background: "transparent",
+            padding: "5px",
+            marginBottom: "10px",
+            borderRadius: "5px",
+          }}
+        >
+          {props.amount}
+        </motion.span>
+      )}
       <div
         className="graphbar"
-        style={{ height: `calc(${(props.amount * 300) / 100} * 1px)` }}
+        style={{
+          height: `calc(${(props.amount * 300) / 100} * 1px)`,
+          backgroundColor: showCondition ? "#ec755d" : "#76b5bc",
+        }}
         onMouseOver={() => setHoveredDay(props.day)}
         onMouseLeave={() => setHoveredDay("")}
       />
