@@ -16,6 +16,11 @@ h2 {
   width: 50.36px;
   border-radius: 5px;
   background: variables.$cyan;
+  cursor: pointer;
+}
+
+.pop {
+  font-size: variables.$mini-caption;
 }
 
 .graphbar-container {
