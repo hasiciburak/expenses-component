@@ -12,6 +12,10 @@ const GraphTooltip = (props: TooltipProps) => {};
 const SpendingGraphBar = (props: GraphBarProps) => {
   const [hoveredDay, setHoveredDay] = useState("");
   const showCondition = hoveredDay === props.day;
+  const date = new Date();
+  const today = date
+    .toLocaleString("en-US", { weekday: "short" })
+    .toLowerCase();
   return (
     <div className="graphbar-container">
       {hoveredDay === props.day ? (
@@ -51,7 +55,11 @@ const SpendingGraphBar = (props: GraphBarProps) => {
         className="graphbar"
         style={{
           height: `calc(${(props.amount * 300) / 100} * 1px)`,
-          backgroundColor: showCondition ? "#ec755d" : "#76b5bc",
+          backgroundColor: showCondition
+            ? "#ec755d"
+            : today === props.day
+            ? "#76b5bc"
+            : "#FF9B86",
         }}
         onMouseOver={() => setHoveredDay(props.day)}
         onMouseLeave={() => setHoveredDay("")}
