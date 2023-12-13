@@ -59,6 +59,8 @@ const SpendingGraphBar = (props: GraphBarProps) => {
             ? "#ec755d"
             : today === props.day
             ? "#76b5bc"
+            : showCondition 
+            ? "#b4e0e5"
             : "#FF9B86",
         }}
         onMouseOver={() => setHoveredDay(props.day)}
