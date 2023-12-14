@@ -18,5 +18,7 @@
   & p {
     font-size: variables.$heading-l;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
   }
 }
